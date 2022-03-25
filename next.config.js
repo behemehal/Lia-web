@@ -14,7 +14,6 @@ module.exports = withPlugins([
   }],
   {
     basePath: '/Lia-web',
-    assetPrefix: '/Lia-web/',
-    env,
+    assetPrefix: '/Lia-web/'
   },
 ]);
