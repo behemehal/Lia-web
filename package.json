@@ -14,7 +14,6 @@
         "secure-ls": "^1.2.6"
     },
     "devDependencies": {
-        "imagemin-mozjpeg": "^10.0.0",
         "next-compose-plugins": "^2.2.1",
         "next-optimized-images": "^2.6.2"
     }
