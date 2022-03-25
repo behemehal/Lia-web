@@ -1,0 +1,57 @@
+.userButtonCenter {
+  display: block;
+  margin-top: auto;
+  margin-bottom: auto;
+}
+
+.userButton {
+  display: flex;
+  width: auto;
+  padding-left: 15px;
+  padding-right: 15px;
+  min-width: 65px;
+  text-align: center;
+  height: 35px;
+  background-color: #de5882;
+  cursor: pointer;
+}
+
+.mini {
+  width: 40px;
+}
+
+.mini .userButton {
+  min-width: unset !important;
+  padding-left: unset !important;
+  padding-right: unset !important;
+}
+
+.mini .userButton .Icon {
+  margin-left: auto;
+  margin-right: auto;
+}
+
+.userButton:hover {
+  background-color: #df3d70;
+}
+
+.userButton:focus {
+  background-color: #dd245f;
+}
+
+.Text {
+  color: white;
+  text-decoration: none;
+  display: block;
+  font-size: 15px;
+  margin-top: auto;
+  margin-bottom: auto;
+}
+
+.Icon {
+  color: white;
+  margin-left: 5px;
+  display: block;
+  margin-top: auto;
+  margin-bottom: auto;
+}

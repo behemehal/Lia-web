@@ -1,0 +1,33 @@
+.formInput {
+  width: 250px;
+  border-radius: 3px;
+  background-color: white;
+}
+
+.formInputInner {
+  width: auto;
+  display: flex;
+}
+
+.formInputIcon {
+  background-color: #DE5882;
+  border-radius: 3px 0px 0px 3px;
+  width: 15%;
+}
+
+.formInputIcon span {
+  text-align: center;
+  display: block;
+  margin-top: 5px;
+  margin-left: auto;
+  margin-right: auto;
+}
+
+.formInputInput {
+  border-radius: 3px;
+  width: 85%;
+  color: #D0114D;
+  border: none;
+  border-radius: 5px;
+  padding: 5px;
+}

@@ -1,0 +1,23 @@
+.navbar {
+  width: 100%;
+  height: 60px;
+  background-color: #d0114d;
+  display: flex;
+}
+
+.navbar img {
+  width: 75px;
+}
+
+.navbarBtn {
+  margin-left: auto;
+  margin-right: 10px;
+}
+
+.navbarSearchBox {
+  margin-left: 25px;
+  margin-right: 15px;
+  display: block;
+  margin-top: 10px;
+  width: 50%;
+}

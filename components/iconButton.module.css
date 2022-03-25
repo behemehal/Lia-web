@@ -1,0 +1,30 @@
+.iconButton {
+  border-radius: 3px;
+  background-color: #de5882;
+  color: #fff;
+  text-align: center;
+  cursor: pointer;
+  height: 20px;
+  width: fit-content;
+  width: -moz-fit-content;
+  padding-left: 10px;
+  padding-right: 10px;
+  padding-top: 5px;
+  padding-bottom: 5px;
+  box-shadow: 0px 3px 10px 1px rgba(0, 0, 0, 0.25);
+}
+
+.iconButtonButton {
+  display: inline;
+  width: 100%;
+}
+
+.iconButton:hover {
+  background-color: #da4272;
+  box-shadow: 0px 3px 10px 1px rgba(0, 0, 0, 0.35);
+}
+
+.iconButton:active {
+  background-color: #df2f67;
+  box-shadow: 0px 3px 10px 1px rgba(0, 0, 0, 0.45);
+}

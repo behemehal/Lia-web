@@ -1,0 +1,30 @@
+.holder {
+  width: auto;
+  height: 33px;
+}
+
+.whiteSection {
+  z-index: 99;
+  position: relative;
+  width: 100%;
+  height: 100%;
+  background-color: white;
+}
+
+.searchSection {
+  position: relative;
+  width: 100%;
+  height: 100%;
+  background-color: #de5882;
+  position: relative;
+  top: -27px;
+  left: 6px;
+}
+
+.whiteSection input {
+  width: 98%;
+  height: 94%;
+  display: block;
+  margin-top: auto;
+  margin-bottom: auto;
+}
