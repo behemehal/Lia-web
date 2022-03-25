@@ -1,5 +1,4 @@
 import Head from "next/head";
-
 import Nav from "../components/nav";
 import Feature from "../components/feature";
 import styles from "../components/login.module.css";
