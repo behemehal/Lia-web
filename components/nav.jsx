@@ -10,19 +10,25 @@ export default function() {
     width: typeof window !== "undefined" ? window.innerWidth : 0,
   });
 
-  React.useEffect(() => {
+  React.useLayoutEffect(() => {
     function handleResize() {
       setDimensions({
         width: window.innerWidth,
       });
     }
 
+    let onLoad = () => {
+      handleResize();
+      console.log("Onload")
+    };
+
+    //On window load
+    window.addEventListener("load", onLoad);
     window.addEventListener("resize", handleResize);
     return (_) => {
       window.removeEventListener("resize", handleResize);
     };
   });
-
   return (
     <div className={styles.navbar}>
       <img src="/side.png" alt="logo" />

@@ -23,7 +23,7 @@ export default function Login() {
         <meta name="robots" content="index, follow" />
         <meta name="copyright" content="Behemehal" />
         <meta name="language" content="English" />
-        <link rel="icon" href="/img/lia.ico" />
+        <link rel="icon" href="/lia.ico" />
         <meta name="distribution" content="global" />
         <meta name="revisit-after" content="5 days" />
         <meta name="author" content="Behemehal" />
