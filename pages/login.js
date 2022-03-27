@@ -5,13 +5,17 @@ import LiaEyes from "../components/liaEyes";
 import FormInput from "../components/formInput";
 import FormButton from "../components/formButton";
 import GithubButton from "../components/githubButton";
+import formInputStyles from "../components/formInput.module.css";
 
 import { createClient } from "@supabase/supabase-js";
 
 export default function Login() {
   const [input, setInput] = React.useState({
-    mail: "",
     errorMessage: "",
+    mail:
+      typeof window == "undefined"
+        ? ""
+        : document.querySelector("." + formInputStyles.formInputInput).value,
   });
 
   return (
@@ -59,7 +63,7 @@ export default function Login() {
           onClick={async () => {
             if (input.mail == "") {
               setInput({
-                mail: "",
+                mail: input.mail,
                 errorMessage: "Email is required",
               });
             } else {
@@ -70,6 +74,7 @@ export default function Login() {
 
               const { _, error } = await supabase.auth.signIn({
                 email: input.mail,
+                redirectTo: "/auth?web=true",
               });
               if (!error) {
                 const url = new URL(location.href);
@@ -77,10 +82,22 @@ export default function Login() {
                 url.searchParams.set("mail", input.mail);
                 window.location.href = url.href;
               } else {
-                setInput({
-                  mail: "",
-                  errorMessage: "Account not found",
-                });
+                if (error.message) {
+                  setInput({
+                    mail: input.mail,
+                    errorMessage: error.message,
+                  });
+                } else if (error.msg) {
+                  setInput({
+                    mail: input.mail,
+                    errorMessage: error.msg,
+                  });
+                } else {
+                  setInput({
+                    mail: input.mail,
+                    errorMessage: "Unknown error",
+                  });
+                }
               }
             }
           }}
