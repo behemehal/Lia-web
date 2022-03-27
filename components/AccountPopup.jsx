@@ -5,8 +5,7 @@ import SecureLS from "secure-ls";
 class AccountPopup extends React.Component {
   render() {
     return (
-      <div className={styles.AccountPopup + " " + " popupHidden"}>
-        testgggg
+      <div className={styles.AccountPopup + " " + " popupHidden center"}>
         <a
           href="#"
           onClick={() => {
@@ -14,11 +13,13 @@ class AccountPopup extends React.Component {
               typeof window == "undefined"
                 ? null
                 : new SecureLS({ encodingType: "aes" });
-                ls.remove("user");
-                location.href = location.href;
-                console.log(ls.getAllKeys())
+            ls.remove("user");
+            location.href = location.href;
+            console.log(ls.getAllKeys());
           }}
-        >Forget me</a>
+        >
+          Logout
+        </a>
       </div>
     );
   }

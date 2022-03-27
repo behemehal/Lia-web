@@ -16,7 +16,7 @@ class UserButton extends React.Component {
         {this.props.user ? (
           <div className={styles.userButton}>
             <a className={styles.Text} href="#">
-              user
+              {this.props.user}
             </a>
             <Icon
               className={styles.Icon}

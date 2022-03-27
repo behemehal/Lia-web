@@ -1,89 +1,18 @@
-import React, { createRef, useState } from "react";
+import React from "react";
 import UserButton from "./userButton";
-import SecureLS from "secure-ls";
 import styles from "./nav.module.css";
 import SearchBar from "./searchBar";
 import AccountPopup from "./AccountPopup";
-import AccountPopupStyle from "./AccountPopup.module.css";
-import UserButtonComponent from "./userButton.module.css";
-import useIsomorphicLayoutEffect from "./isomorphicEffect";
 
 export default function () {
-  const [dimensions, setDimensions] = React.useState({
-    width: typeof window !== "undefined" ? window.innerWidth : 0,
-  });
-
-  useIsomorphicLayoutEffect(() => {
-    function handleResize() {
-      setDimensions({
-        width: window.innerWidth,
-      });
-    }
-
-    document.addEventListener("click", function (e) {
-      const accountBtn = document.querySelector(`.${styles.navbarBtn}`);
-
-      var accountBtbClicked =
-        accountBtn.contains(e.target) || styles.navbarBtn == e.target;
-
-      console.log("Close btn");
-
-      document.querySelectorAll(`.popupActive`).forEach(function (btn) {
-        if (
-          document
-            .querySelector(`.${AccountPopupStyle.AccountPopup}`)
-            .contains(e.target)
-        ) {
-          console.log("Ignored");
-        } else {
-          btn.classList.replace("popupActive", "popupHidden");
-        }
-      });
-
-      if (accountBtbClicked) {
-        let accountPopup = document.querySelector(
-          `.${AccountPopupStyle.AccountPopup}`
-        );
-
-        accountPopup.style.left =
-          accountBtn.getBoundingClientRect().x -
-          (200 - accountBtn.getBoundingClientRect().width) +
-          "px";
-        document
-          .querySelector(`.${AccountPopupStyle.AccountPopup}`)
-          .classList.replace("popupHidden", "popupActive");
-      }
-    });
-
-    window.addEventListener("resize", handleResize);
-    return (_) => {
-      window.removeEventListener("resize", handleResize);
-    };
-  });
-
-  let openAccountPanel = () => {
-    setDimensions({
-      width: dimensions.width,
-      accountPopupOpen: !dimensions.accountPopupOpen,
-      searchBarOpen: dimensions.searchBarOpen,
-    });
-  };
-
-  let ls =
-    typeof window == "undefined" ? null : new SecureLS({ encodingType: "aes" });
-
-    console.log(ls, ls != null ? ls.get("user") : null);
-
+  console.log("User:", typeof window  === 'undefined' ? false : window.user ? window.user : false)
   return (
     <div className={styles.navbar}>
       <img src="/side.png" alt="logo" />
       <SearchBar className={styles.navbarSearchBox} />
       <UserButton
-        onClick={openAccountPanel}
         className={styles.navbarBtn}
-        user={
-          ls == null ? false : ls.get("user") == null ? false : ls.get("user")
-        }
+        user={typeof window  === 'undefined' ? false : window.user ? window.user : false}
       />
       <AccountPopup open={false} />
     </div>

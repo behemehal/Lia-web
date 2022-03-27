@@ -4,9 +4,18 @@ import Icon from "../components/icon";
 import SecureLS from "secure-ls";
 
 export default function Login() {
-  var urlSearchParams = typeof window == 'undefined' ? null : new URLSearchParams(location.href.split("#")[1]);
-  var params = typeof window == 'undefined' ? null : Object.fromEntries(urlSearchParams.entries());
-  var valid = params != null && new URLSearchParams(location.url).get("type") == null && params["access_token"] != null;
+  var urlSearchParams =
+    typeof window == "undefined"
+      ? null
+      : new URLSearchParams(location.href.split("#")[1]);
+  var params =
+    typeof window == "undefined"
+      ? null
+      : Object.fromEntries(urlSearchParams.entries());
+  var valid =
+    params != null &&
+    new URLSearchParams(location.url).get("type") == null &&
+    params["access_token"] != null;
   if (!valid) {
     return (
       <div className={styles.body}>
@@ -98,9 +107,11 @@ export default function Login() {
     );
   } else {
     var ls = new SecureLS({ encodingType: "aes" });
-    if (ls.get("access_token") == null || ls.get("access_token") != params["access_token"]) {
-      ls.set("access_token", params["access_token"]);
-      console.log("OK SET");
+    if (
+      ls.get("access_token") == null ||
+      ls.get("access_token") != params["access_token"]
+    ) {
+      ls.set("access_token", params["access_token"].toString());
     }
     setTimeout(() => {
       window.location.href = "/";

@@ -60,7 +60,8 @@ export default function Login() {
         <p className="center wlight">{input.errorMessage}</p>
         <br />
         <FormButton
-          onClick={async () => {
+          onClick={async (e) => {
+            e.persist();
             if (input.mail == "") {
               setInput({
                 mail: input.mail,
@@ -113,7 +114,8 @@ export default function Login() {
         </FormButton>
         <p className="center wlight">or</p>
         <GithubButton
-          onClick={async () => {
+          onClick={async (e) => {
+            e.persist();
             let authType = new URLSearchParams(location.search).get("type") != null ? new URLSearchParams(location.search).get("type") : "web";
             const supabase = createClient(
               "https://ecjdmzrdopsfaqxxtoga.supabase.co",
