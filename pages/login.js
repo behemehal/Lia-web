@@ -83,7 +83,7 @@ export default function Login() {
                   redirectTo: "https://lia.ellie-lang.org/auth?type=" + authType,
                 }
               );
-              if (!error) {ß
+              if (!error) {
                 const url = new URL(location.href);
                 url.pathname = "/waiting_magic_link";
                 url.searchParams.set("mail", input.mail);

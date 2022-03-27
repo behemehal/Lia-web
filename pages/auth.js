@@ -114,7 +114,11 @@ export default function Login() {
       ls.set("access_token", params["access_token"].toString());
     }
     setTimeout(() => {
-      window.location.href = "/";
+      if (params.get("type") == "cli") {
+        window.location.href = `/registerCli?access_token=${params["access_token"]}`;
+      } else {
+        window.location.href = "/";
+      }
     }, 1000);
     return (
       <div className={styles.body}>

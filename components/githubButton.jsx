@@ -6,13 +6,14 @@ class GithubIcon extends React.Component {
   render() {
     return (
       <div
+        onClick={this.props.onClick}
         className={
           this.props.className != undefined
             ? styles.iconButton + " " + this.props.className
             : styles.iconButton
         }
       >
-        <a className={styles.iconButtonButton} onClick={this.props.onClick}>
+        <a className={styles.iconButtonButton}>
           <img width="20s" src="/github.png" alt="github_lg" />
         </a>
       </div>

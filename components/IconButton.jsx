@@ -6,16 +6,19 @@ class IconButton extends React.Component {
   render() {
     return (
       <div
+        onClick={this.props.onClick}
         className={
           this.props.className != undefined
             ? styles.formButton + " " + this.props.className
             : styles.formButton
         }
       >
-        <a className={styles.formButtonButton} onClick={this.props.onClick}>
-            <Icon className={styles.formButtonIcon} icon={this.props.icon} />
+        <a className={styles.formButtonButton}>
+          <Icon className={styles.formButtonIcon} icon={this.props.icon} />
         </a>
       </div>
     );
   }
 }
+
+export default IconButton;
