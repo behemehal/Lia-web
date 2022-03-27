@@ -74,7 +74,7 @@ export default function Login() {
 
               const { _, error } = await supabase.auth.signIn({
                 email: input.mail,
-                redirectTo: "/auth?web=true",
+                redirectTo: "https://lia.ellie-lang.org/auth?web=true",
               });
               if (!error) {
                 const url = new URL(location.href);
@@ -115,6 +115,7 @@ export default function Login() {
             );
             const { user, session, error } = await supabase.auth.signIn({
               provider: "github",
+              redirectTo: "https://lia.ellie-lang.org/auth?web=true",
             });
             console.log(user, session, error);
           }}
