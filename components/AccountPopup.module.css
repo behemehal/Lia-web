@@ -1,0 +1,13 @@
+.AccountPopup {
+  position: fixed;
+  top: 50px;
+  left: 20px;
+  background-color: #fff;
+  width: 200px;
+  height: 200px;
+  border: 2px solid #d0114d;
+}
+
+.AccountPopupHidden {
+    display: none;
+}

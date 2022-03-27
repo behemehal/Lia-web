@@ -1,6 +1,5 @@
+import React from "react";
 import Head from "next/head";
-import Nav from "../components/nav";
-import Feature from "../components/feature";
 import styles from "../components/login.module.css";
 import LiaEyes from "../components/liaEyes";
 import FormInput from "../components/formInput";
@@ -10,6 +9,11 @@ import GithubButton from "../components/githubButton";
 import { createClient } from "@supabase/supabase-js";
 
 export default function Login() {
+  const [input, setInput] = React.useState({
+    mail: "",
+    errorMessage: "",
+  });
+
   return (
     <div className={styles.body}>
       <Head>
@@ -43,25 +47,42 @@ export default function Login() {
         <br />
         <FormInput
           type="mail"
+          onChange={(e) => setInput({ mail: e.target.value })}
           className={styles.formInputs}
           placeholder="Mail"
           icon="alternate_email"
         />
         <br />
+        <p className="center wlight">{input.errorMessage}</p>
         <br />
         <FormButton
           onClick={async () => {
-            console.log("Login");
-            const supabase = createClient(
-              "https://ecjdmzrdopsfaqxxtoga.supabase.co",
-              "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJyb2xlIjoiYW5vbiIsImlhdCI6MTYzNzUzODg3OCwiZXhwIjoxOTUzMTE0ODc4fQ.Ry7tFw0yDXHRjO0RkNRErIIq-TKSM9ayDedRwFbDUaE"
-            );
+            if (input.mail == "") {
+              setInput({
+                mail: "",
+                errorMessage: "Email is required",
+              });
+            } else {
+              const supabase = createClient(
+                "https://ecjdmzrdopsfaqxxtoga.supabase.co",
+                "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJyb2xlIjoiYW5vbiIsImlhdCI6MTYzNzUzODg3OCwiZXhwIjoxOTUzMTE0ODc4fQ.Ry7tFw0yDXHRjO0RkNRErIIq-TKSM9ayDedRwFbDUaE"
+              );
 
-            const { user, error } = await supabase.auth.signIn({
-              email: "ahmetcanco@gmail.com",
-            });
-
-            console.log(user, error);
+              const { _, error } = await supabase.auth.signIn({
+                email: input.mail,
+              });
+              if (!error) {
+                const url = new URL(location.href);
+                url.pathname = "/waiting_magic_link";
+                url.searchParams.set("mail", input.mail);
+                window.location.href = url.href;
+              } else {
+                setInput({
+                  mail: "",
+                  errorMessage: "Account not found",
+                });
+              }
+            }
           }}
           className={styles.formInputs}
         >

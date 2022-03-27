@@ -16,19 +16,22 @@
   cursor: pointer;
 }
 
-.mini {
-  width: 40px;
-}
+@media only screen and (max-width: 400px) {
+  .userButton {
+    width: 40px;
+    min-width: unset !important;
+    padding-left: unset !important;
+    padding-right: unset !important;
+  }
 
-.miniUserButton {
-  min-width: unset !important;
-  padding-left: unset !important;
-  padding-right: unset !important;
-}
+  .Text {
+    display: none !important;
+  }
 
-.miniUserButtonIcon {
-  margin-left: auto;
-  margin-right: auto;
+  .Icon {
+    margin-left: auto !important;
+    margin-right: auto;
+  }
 }
 
 .userButton:hover {

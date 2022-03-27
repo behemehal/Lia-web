@@ -11,19 +11,25 @@ body {
 }
 
 .wlight {
-    color: #dbdbdb;
+  color: #dbdbdb;
 }
 
 .light {
-    color: #d0114d;
+  color: #d0114d;
 }
 
 .dark {
-    color: #820829;
+  color: #820829;
 }
 
 .center {
   text-align: center;
+}
+
+.centerElement {
+  display: block;
+  margin-left: auto;
+  margin-right: auto;
 }
 
 input:focus,
@@ -36,4 +42,12 @@ input {
   border: none;
   font-family: "Montserrat", sans-serif;
   font-size: 12px;
+}
+
+.popupActive {
+  display: unset;
+}
+
+.popupHidden {
+  display: none;
 }
