@@ -16,6 +16,11 @@
   cursor: pointer;
 }
 
+.userButtonNonIcon a {
+  margin-right: auto;
+  margin-left: auto;
+}
+
 @media only screen and (max-width: 400px) {
   .userButton {
     width: 40px;

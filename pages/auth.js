@@ -1,14 +1,13 @@
 import Head from "next/head";
 import styles from "../components/login.module.css";
 import Icon from "../components/icon";
-
-import { createClient } from "@supabase/supabase-js";
+import SecureLS from "secure-ls";
 
 export default function Login() {
   var urlSearchParams = typeof window == 'undefined' ? null : new URLSearchParams(location.href.split("#")[1]);
   var params = typeof window == 'undefined' ? null : Object.fromEntries(urlSearchParams.entries());
-  console.log(params)
-  if (params == null) {
+  var valid = params != null && new URLSearchParams(location.url).get("type") == null && params["access_token"] != null;
+  if (!valid) {
     return (
       <div className={styles.body}>
         <Head>
@@ -98,6 +97,14 @@ export default function Login() {
       </div>
     );
   } else {
+    var ls = new SecureLS({ encodingType: "aes" });
+    if (ls.get("access_token") == null || ls.get("access_token") != params["access_token"]) {
+      ls.set("access_token", params["access_token"]);
+      console.log("OK SET");
+    }
+    setTimeout(() => {
+      window.location.href = "/";
+    }, 1000);
     return (
       <div className={styles.body}>
         <Head>

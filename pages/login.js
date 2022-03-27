@@ -72,11 +72,17 @@ export default function Login() {
                 "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJyb2xlIjoiYW5vbiIsImlhdCI6MTYzNzUzODg3OCwiZXhwIjoxOTUzMTE0ODc4fQ.Ry7tFw0yDXHRjO0RkNRErIIq-TKSM9ayDedRwFbDUaE"
               );
 
-              const { _, error } = await supabase.auth.signIn({
-                email: input.mail,
-                redirectTo: "https://lia.ellie-lang.org/auth?web=true",
-              });
-              if (!error) {
+              let authType = new URLSearchParams(location.search).get("type") != null ? new URLSearchParams(location.search).get("type") : "web";
+
+              const { _, error } = await supabase.auth.signIn(
+                {
+                  email: input.mail,
+                },
+                {
+                  redirectTo: "https://lia.ellie-lang.org/auth?type=" + authType,
+                }
+              );
+              if (!error) {ß
                 const url = new URL(location.href);
                 url.pathname = "/waiting_magic_link";
                 url.searchParams.set("mail", input.mail);
@@ -108,16 +114,19 @@ export default function Login() {
         <p className="center wlight">or</p>
         <GithubButton
           onClick={async () => {
-            console.log("Github");
+            let authType = new URLSearchParams(location.search).get("type") != null ? new URLSearchParams(location.search).get("type") : "web";
             const supabase = createClient(
               "https://ecjdmzrdopsfaqxxtoga.supabase.co",
               "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJyb2xlIjoiYW5vbiIsImlhdCI6MTYzNzUzODg3OCwiZXhwIjoxOTUzMTE0ODc4fQ.Ry7tFw0yDXHRjO0RkNRErIIq-TKSM9ayDedRwFbDUaE"
             );
-            const { user, session, error } = await supabase.auth.signIn({
-              provider: "github",
-              redirectTo: "https://lia.ellie-lang.org/auth?web=true",
-            });
-            console.log(user, session, error);
+            const { user, session, error } = await supabase.auth.signIn(
+              {
+                provider: "github",
+              },
+              {
+                redirectTo: "https://lia.ellie-lang.org/auth?type=" + authType,
+              }
+            );
           }}
           className={styles.formInputs}
         ></GithubButton>

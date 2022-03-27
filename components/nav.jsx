@@ -6,13 +6,14 @@ import SearchBar from "./searchBar";
 import AccountPopup from "./AccountPopup";
 import AccountPopupStyle from "./AccountPopup.module.css";
 import UserButtonComponent from "./userButton.module.css";
+import useIsomorphicLayoutEffect from "./isomorphicEffect";
 
 export default function () {
   const [dimensions, setDimensions] = React.useState({
     width: typeof window !== "undefined" ? window.innerWidth : 0,
   });
 
-  React.useLayoutEffect(() => {
+  useIsomorphicLayoutEffect(() => {
     function handleResize() {
       setDimensions({
         width: window.innerWidth,
@@ -44,7 +45,10 @@ export default function () {
           `.${AccountPopupStyle.AccountPopup}`
         );
 
-        accountPopup.style.left = (accountBtn.getBoundingClientRect().x - (200 - accountBtn.getBoundingClientRect().width)) + "px";
+        accountPopup.style.left =
+          accountBtn.getBoundingClientRect().x -
+          (200 - accountBtn.getBoundingClientRect().width) +
+          "px";
         document
           .querySelector(`.${AccountPopupStyle.AccountPopup}`)
           .classList.replace("popupHidden", "popupActive");
@@ -65,6 +69,11 @@ export default function () {
     });
   };
 
+  let ls =
+    typeof window == "undefined" ? null : new SecureLS({ encodingType: "aes" });
+
+    console.log(ls, ls != null ? ls.get("user") : null);
+
   return (
     <div className={styles.navbar}>
       <img src="/side.png" alt="logo" />
@@ -72,7 +81,9 @@ export default function () {
       <UserButton
         onClick={openAccountPanel}
         className={styles.navbarBtn}
-        user={"ahmedo"}
+        user={
+          ls == null ? false : ls.get("user") == null ? false : ls.get("user")
+        }
       />
       <AccountPopup open={false} />
     </div>

@@ -6,7 +6,7 @@ import Link from "next/link";
 class UserButton extends React.Component {
   render() {
     return (
-      <div onClick={this.props.onClick}
+      <div onClick={this.props.user ? this.props.onClick : null}
         className={`${
           this.props.className != undefined
             ? styles.userButtonCenter + " " + this.props.className
@@ -26,8 +26,8 @@ class UserButton extends React.Component {
             />
           </div>
         ) : (
-          <div className={styles.userButton}>
-            <a className={styles.Text} href="#">
+          <div className={styles.userButton + " " + styles.userButtonNonIcon }>
+            <a className={styles.Text} href="/login">
               Login
             </a>
           </div>
