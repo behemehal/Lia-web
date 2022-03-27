@@ -4,18 +4,19 @@ import Icon from "../components/icon";
 import SecureLS from "secure-ls";
 
 export default function Login() {
+  let wurl = typeof window == "undefined" ? null : "?" + location.href.split("#")[0].split("?")[1];
   var urlSearchParams =
-    typeof window == "undefined"
-      ? null
-      : new URLSearchParams(location.href.split("#")[1]);
+  typeof window == "undefined"
+  ? null
+  : new URLSearchParams(location.href.split("#")[1]);
   var params =
-    typeof window == "undefined"
-      ? null
-      : Object.fromEntries(urlSearchParams.entries());
+  typeof window == "undefined"
+  ? null
+  : Object.fromEntries(urlSearchParams.entries());
   var valid =
-    params != null &&
-    new URLSearchParams(location.url).get("type") == null &&
-    params["access_token"] != null;
+  params != null &&
+  new URLSearchParams(wurl).get("type") != null &&
+  params["access_token"] != null;
   if (!valid) {
     return (
       <div className={styles.body}>
@@ -114,7 +115,7 @@ export default function Login() {
       ls.set("access_token", params["access_token"].toString());
     }
     setTimeout(() => {
-      if (params.get("type") == "cli") {
+      if (new URLSearchParams(wurl).get("type") == "cli") {
         window.location.href = `/registerCli?access_token=${params["access_token"]}`;
       } else {
         window.location.href = "/";
