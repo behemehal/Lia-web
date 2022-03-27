@@ -7,7 +7,6 @@ export default function Login() {
     typeof window !== "undefined"
       ? new URL(document.location).searchParams
       : null;
-  console.log("document", params);
   if (params == null || params.get("mail") == null) {
     return (
       <div>
